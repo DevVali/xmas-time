@@ -15,7 +15,7 @@ function createStatusBar() {
 
 function updateStatusBar() {
     statusBar.text = getTimeLeft() !== 'Merry Christmas!' && getTimeLeft() !== 'Christmas are over!' ? `$(watch) ${getTimeLeft()}` : `$(sparkle) ${getTimeLeft()}`; 
-    statusBar.tooltip = getTimeLeft() !== 'Merry Christmas!' && getTimeLeft() !== 'Christmas are over!' ? 'Time left until Christmas. 🎄' : null;
+    statusBar.tooltip = getTimeLeft() !== 'Merry Christmas!' && getTimeLeft() !== 'Christmas are over!' ? `${getTimeLeft()} left until Christmas 🎄` : null;
     statusBar.show();
 }
 
