@@ -1,31 +1,35 @@
 const vscode = require('vscode');
 const { createStatusBar, updateStatusBar } = require('./statusBar');
 
-/**
- * @param {vscode.ExtensionContext} context
- */
-function activate(context) {
-	let disposable = vscode.commands.registerCommand('xmasTime.run', function () {
-		updateStatusBar();
-		vscode.window.showInformationMessage('The status bar was updated successfully.');
-	});
+let disposable;
+let subscriptions = [];
 
-	// Register a command and a status bar item
-	context.subscriptions.push(disposable);
-	context.subscriptions.push(createStatusBar());
+function activate() {
+    disposable = vscode.commands.registerCommand('xmasTime.run', function () {
+        updateStatusBar();
+        vscode.window.showInformationMessage('The status bar was updated successfully.');
+    });
 
-	// Register some listeners
-	context.subscriptions.push(vscode.window.onDidChangeTextEditorSelection(updateStatusBar));
-	context.subscriptions.push(vscode.window.onDidChangeActiveTextEditor(updateStatusBar));
-	context.subscriptions.push(vscode.workspace.onDidSaveTextDocument(updateStatusBar));
+    // Register a command and a status bar item
+    subscriptions.push(disposable);
+    subscriptions.push(createStatusBar());
 
-	// Update the status bar once at start
-	updateStatusBar();
+    // Register some listeners with disposables
+    subscriptions.push(vscode.window.onDidChangeTextEditorSelection(updateStatusBar));
+    subscriptions.push(vscode.window.onDidChangeActiveTextEditor(updateStatusBar));
+    subscriptions.push(vscode.workspace.onDidSaveTextDocument(updateStatusBar));
+
+    // Update the status bar once at start
+    updateStatusBar();
 }
 
-function deactivate() {}
+function deactivate() {
+    // Disposing
+    disposable.dispose();
+    subscriptions.forEach(subscription => subscription.dispose());
+}
 
 module.exports = {
-	activate,
-	deactivate
-}
+    activate,
+    deactivate
+};
