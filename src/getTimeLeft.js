@@ -3,8 +3,9 @@ const dayjs = require('dayjs');
 const xmas = dayjs('2023-12-25');
 
 // Helpers
+
 function diff(unit) {
-    return Math.abs(xmas.diff(dayjs(), unit));
+    return xmas.diff(dayjs(), unit);
 }
 
 function getUnit() {
@@ -38,6 +39,7 @@ function getUnit() {
 }
 
 // Get the time left and return the text
+
 function getTimeLeft() {
     const unit = getUnit();
     let result = '';
