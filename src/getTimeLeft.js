@@ -1,5 +1,6 @@
 const dayjs = require("dayjs");
-const xmas = dayjs("2023-11-30");
+// Globally its celebrated on 25th but some countries celebrate on the 24th december
+const xmas = dayjs("2023-12-25");
 
 // Helpers
 function diff(unit) {
