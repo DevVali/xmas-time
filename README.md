@@ -1,65 +1,42 @@
-# xmas-time README
+# Xmas Time (╯^□^)❄☃❄
 
-This is the README for your extension "xmas-time". After writing up a brief description, we recommend including the following sections.
+![Xmas Time](hero.png)
+
+**Xmas Time** is a fun Visual Studio Code extension that adds a Christmas countdown to your status bar, spreading holiday cheer!
 
 ## Features
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+- 🎄 Real-time countdown to Christmas in your status bar.
+- 🎅 Festive icons to brighten your coding sessions.
 
-For example if there is an image subfolder under your extension project workspace:
+## Installation
 
-\!\[feature X\]\(images/feature-x.png\)
+1. Open **Visual Studio Code**.
+2. Go to the **Extensions** view (`Ctrl + Shift + X`).
+3. Search for "**Xmas Time**" and click "**Install**."
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+## Usage
 
-## Requirements
+- The Christmas countdown will be displayed in the status bar once the extension is installed.
+- Hover over to the countdown(status bar) to see the magic.
+- Optionally, use the `Xmas Time: Run` command (`Ctrl + Shift + P` and type "Xmas Time: Run") to update the countdown manually.
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+> Tip: In many countries, Christmas is celebrated on the 24th of December. To change the date to the 24th, use `Ctrl` + `Shift` + `P` (Windows) or `Cmd` + `Shift` + `P` (Mac) in Visual Studio Code.
 
-## Extension Settings
+## Screenshots
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
+![Xmas Time](header.png)
 
-For example:
+## Contributors
+1. [Devvali](https://github.com/DevVali/)
+2. [Nermalcat69](https://github.com/nermalcat69/)
 
-This extension contributes the following settings:
+If you'd like to contribute to the development of Xmas Time, feel free to submit pull requests or open issues on [GitHub](https://github.com/DevVali/xmas-time).
 
-- `myExtension.enable`: Enable/disable this extension.
-- `myExtension.thing`: Set to `blah` to do something.
+## License
 
-## Known Issues
-
-Calling out known issues can help limit users opening duplicate issues against your extension.
-
-## Release Notes
-
-Users appreciate release notes as you update your extension.
-
-### 1.0.0
-
-Initial release of ...
-
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
+This extension is licensed under the [MIT License](LICENSE).
 
 ---
 
-## Working with Markdown
-
-You can author your README using Visual Studio Code. Here are some useful editor keyboard shortcuts:
-
-- Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux)
-- Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux)
-- Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets
-
-## For more information
-
-- [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-- [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
+Happy Coding and Merry Christmas! 🎄✨
