@@ -14,19 +14,17 @@ function getUnit() {
     // Less than 1 ms
     if (diff('ms') < 1) {
         result = 'celebrating';
-        if (diff('day') < -15) {
+        if (diff('d') < -15) {
             result = 'over';
         }
     }
     // Greather than 1 ms
     if (diff('ms') > 1) {
-        result = 'second';
-        if (diff('day') > 0) {
-            result = 'day';
-        } else if (diff('hour') > 0) {
-            result = 'hour';
-        } else if (diff('minute') > 0) {
-            result = 'minute';
+        result = 'm';
+        if (diff('d') > 0) {
+            result = 'd';
+        } else if (diff('h') > 0) {
+            result = 'h';
         }
     }
     if (result !== '') {
@@ -42,34 +40,44 @@ function getUnit() {
 
 function getTimeLeft() {
     const unit = getUnit();
+    let timeLeft = diff(unit);
     let result = '';
 
-    if (unit !== 'celebrating' && unit !== 'over') {
-        let timeLeft = diff(unit);
-        if (unit === 'day') {
-            const hoursLeft = diff('hour') % 24;
+    switch (unit) {
+        case 'm':
+            timeLeft += 1;
+            result = `${timeLeft} ${timeLeft > 1 ? 'minutes' : 'minute'}`;
+            break;
+        case 'd':
+            const hoursLeft = (diff('h') % 24) + 1;
             if (hoursLeft > 0) {
-                result = `${timeLeft} days and ${hoursLeft} hours`;
+                result = `${timeLeft} ${
+                    timeLeft > 1 ? 'days' : 'day'
+                } and ${hoursLeft} ${hoursLeft > 1 ? 'hours' : 'hour'}`;
             } else {
-                result = `${timeLeft} day(s)`;
+                result = `${timeLeft} ${timeLeft > 1 ? 'days' : 'day'}`;
             }
-        } else if (unit === 'hour') {
-            const minutesLeft = diff('minute') % 60;
+            break;
+        case 'h':
+            const minutesLeft = (diff('m') % 60) + 1;
             if (minutesLeft > 0) {
-                result = `${timeLeft} hours and ${minutesLeft} minutes`;
-            } else {
-                result = `${timeLeft} hours`;
+                result = `${timeLeft} ${
+                    timeLeft > 1 ? 'hours' : 'hour'
+                } and ${minutesLeft} ${minutesLeft > 1 ? 'minutes' : 'minute'}`;
             }
-        } else {
-            result =
-                timeLeft > 1 ? `${timeLeft} ${unit}s` : `${timeLeft} ${unit}`;
-        }
-    } else if (unit === 'celebrating') {
-        result = 'Merry Christmas!';
-    } else if (unit === 'over') {
-        result = 'Christmas is over!';
+            break;
+        case 'celebrating':
+            result = 'Merry Christmas!';
+            break;
+        case 'over':
+            result = 'Christmas is over!';
+            break;
+        default:
+            console.log(
+                'Xmas Time could not calculate the time left until Christmas!'
+            );
+            break;
     }
-
     if (result !== '') {
         return result;
     } else {
