@@ -10,26 +10,20 @@ function createStatusBar() {
     statusBar = vscode.window.createStatusBarItem(
         vscode.StatusBarAlignment.Right
     );
-    statusBar.command =
-        getTimeLeft() !== 'Merry Christmas!' &&
-        getTimeLeft() !== 'Christmas are over!'
-            ? 'xmasTime.run'
-            : null;
 
     return statusBar;
 }
 
 function updateStatusBar() {
-    statusBar.text =
+    if (
         getTimeLeft() !== 'Merry Christmas!' &&
-        getTimeLeft() !== 'Christmas are over!'
-            ? `$(watch) ${getTimeLeft()}`
-            : `$(sparkle) ${getTimeLeft()}`;
-    statusBar.tooltip =
-        getTimeLeft() !== 'Merry Christmas!' &&
-        getTimeLeft() !== 'Christmas are over!'
-            ? `${getTimeLeft()} left until Christmas 🎄`
-            : null;
+        getTimeLeft() !== 'Christmas is over!'
+    ) {
+        statusBar.text = `$(watch) ${getTimeLeft()}`;
+        statusBar.tooltip = `${getTimeLeft()} left until Christmas 🎄`;
+    } else {
+        statusBar.text = `$(sparkle) ${getTimeLeft()}`;
+    }
     statusBar.show();
 }
 
