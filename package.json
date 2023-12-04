@@ -1,8 +1,9 @@
 {
     "name": "xmas-time",
-    "displayName": "Xmas Time (╯^□^)❄☃❄",
-    "description": "",
-    "version": "0.0.1",
+    "displayName": "[Christmas] Xmas Time (╯^□^)❄☃❄",
+    "description": "Xmas Time is a fun Visual Studio Code extension that adds a Christmas countdown to your status bar, spreading holiday cheer!",
+    "icon": "images/logo.png",
+    "version": "1.0.0",
     "engines": {
         "vscode": "^1.84.0"
     },
