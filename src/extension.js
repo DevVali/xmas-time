@@ -16,7 +16,7 @@ function activate() {
     subscriptions.push(disposable);
     subscriptions.push(createStatusBar());
 
-    // Register some listeners with disposables
+    // Register some listeners
     subscriptions.push(
         vscode.window.onDidChangeTextEditorSelection(updateStatusBar)
     );
