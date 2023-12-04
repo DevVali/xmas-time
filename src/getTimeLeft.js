@@ -49,7 +49,7 @@ function getTimeLeft() {
             result = `${timeLeft} ${timeLeft > 1 ? 'minutes' : 'minute'}`;
             break;
         case 'd':
-            const hoursLeft = (diff('h') % 24) + 1;
+            const hoursLeft = diff('h') % 24;
             if (hoursLeft > 0) {
                 result = `${timeLeft} ${
                     timeLeft > 1 ? 'days' : 'day'
@@ -60,10 +60,13 @@ function getTimeLeft() {
             break;
         case 'h':
             const minutesLeft = (diff('m') % 60) + 1;
-            if (minutesLeft > 0) {
+            if (minutesLeft > 0 && minutesLeft !== 60) {
                 result = `${timeLeft} ${
                     timeLeft > 1 ? 'hours' : 'hour'
                 } and ${minutesLeft} ${minutesLeft > 1 ? 'minutes' : 'minute'}`;
+            } else {
+                timeLeft += 1;
+                result = `${timeLeft} ${timeLeft > 1 ? 'hours' : 'hour'}`;
             }
             break;
         case 'celebrating':
@@ -71,11 +74,6 @@ function getTimeLeft() {
             break;
         case 'over':
             result = 'Christmas is over!';
-            break;
-        default:
-            console.log(
-                'Xmas Time could not calculate the time left until Christmas!'
-            );
             break;
     }
     if (result !== '') {
