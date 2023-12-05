@@ -6,7 +6,7 @@
         "type": "git",
         "url": "https://github.com/devvali/xmas-time.git"
     },
-    "description": "Xmas Time is a fun Visual Studio Code extension that adds a Christmas countdown to your status bar, spreading holiday cheer!",
+    "description": "Xmas Time adds a christmas countdown to your visual studio code's status bar!",
     "icon": "images/logo.png",
     "version": "1.0.0",
     "engines": {
