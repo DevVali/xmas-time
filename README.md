@@ -2,7 +2,7 @@
 
 ![Xmas Time](images/hero.png)
 
-**Xmas Time** is a fun Visual Studio Code extension that adds a Christmas countdown to your status bar, spreading holiday cheer!
+**Xmas Time** adds a Christmas countdown to your Visual Studio Code's status bar!
 
 ## Features
 
