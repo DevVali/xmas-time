@@ -2,7 +2,14 @@
 
 All notable changes to the Xmas Time extension will be documented in this file.
 
-## [1.1.0] - 2023-12-10
+## 1.1.1
+
+### Changed
+
+-   Description in the readme
+-   Change log
+
+## 1.1.0
 
 ### Added
 
