@@ -13,25 +13,36 @@
         "vscode": "^1.84.0"
     },
     "keywords": [
-        "christmas",
-        "xmas time",
-        "devvali",
-        "nermalcat69",
-        "countdown",
-        "status bar",
-        "christmas countdown",
-        "christmas holiday",
-        "christmas day",
-        "christ",
-        "festival countdown",
-        "countdown for christmas",
-        "christmas holiday",
-        "christmas vacation",
-        "time left for christmas",
-        "countdown for christmas",
-        "countdown for christmas day",
-        "timer for christmas day",
-        "christmas day countdown"
+        "(╯^□^)❄☃❄",
+        "Christmas",
+        "Christmas Day",
+        "Chrsitmas Holiday",
+        "Chrsitmas magic",
+        "Christ",
+        "Merry Christmas",
+        "Happy Christmas",
+        "Xmas",
+        "Xmas countdown",
+        "Holiday",
+        "Countdown",
+        "Countdown for Christmas",
+        "Countdown for Christmas Day",
+        "Christmas countdown",
+        "Christmas Day countdown",
+        "Christmas countdown 2023",
+        "Festival countdown",
+        "Status bar",
+        "Time left until Christmas",
+        "Sleeps until Christmas",
+        "How many days til Christmas",
+        "How many days left to Christmas",
+        "Fun",
+        "Magic",
+        "Snow",
+        "Icons",
+        "Festive icons",
+        "Coding",
+        "Coding sessions"
     ],
     "categories": [
         "Other"
@@ -50,9 +61,9 @@
         "configuration": {
             "title": "Xmas Time",
             "properties": {
-                "xmasTime.foo": {
-                    "title": "Lorem ipsum",
-                    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+                "xmasTime.yourXmas": {
+                    "title": "Your Xmas",
+                    "description": "Personalize your Xmas experience by specifying the day you celebrate. The countdown adapts to your festive schedule.",
                     "type": "string",
                     "enum": [
                         "2023-12-24",
