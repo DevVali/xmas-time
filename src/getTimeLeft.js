@@ -1,11 +1,11 @@
+const vscode = require('vscode');
 const dayjs = require('dayjs');
-// Globally its celebrated on 25th but some countries celebrate on the 24th december
-const xmas = dayjs('2023-12-25');
+const { foo } = vscode.workspace.getConfiguration('xmasTime');
 
 // Helpers
 
 function diff(unit) {
-    return xmas.diff(dayjs(), unit);
+    return dayjs(foo).diff(dayjs(), unit);
 }
 
 function getUnit() {

@@ -12,6 +12,9 @@
     "engines": {
         "vscode": "^1.84.0"
     },
+    "keywords": [
+        "christmas"
+    ],
     "categories": [
         "Other"
     ],
@@ -25,7 +28,23 @@
                 "command": "xmasTime.run",
                 "title": "Xmas Time (╯^□^)❄☃❄"
             }
-        ]
+        ],
+        "configuration": {
+            "title": "Xmas Time",
+            "properties": {
+                "xmasTime.foo": {
+                    "title": "Lorem ipsum",
+                    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+                    "type": "string",
+                    "enum": [
+                        "2023-12-24",
+                        "2023-12-25",
+                        "2024-01-06"
+                    ],
+                    "default": "2023-12-25"
+                }
+            }
+        }
     },
     "scripts": {
         "lint": "eslint .",
