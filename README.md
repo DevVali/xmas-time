@@ -25,6 +25,12 @@
 
 ![Xmas Time](images/screenshot.png)
 
+## Partners
+
+1. [Agg-API](https://api.aggelos-007.xyz)
+
+Meet the partners who join us in building and spreading the holiday spirit through this extension.
+
 ## Contributors
 
 1. [Devvali](https://github.com/DevVali)
