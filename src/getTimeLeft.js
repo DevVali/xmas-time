@@ -1,11 +1,11 @@
 const vscode = require('vscode');
 const dayjs = require('dayjs');
-const { foo } = vscode.workspace.getConfiguration('xmasTime');
+const { yourXmas } = vscode.workspace.getConfiguration('xmasTime');
 
 // Helpers
 
 function diff(unit) {
-    return dayjs(foo).diff(dayjs(), unit);
+    return dayjs(yourXmas).diff(dayjs(), unit);
 }
 
 function getUnit() {
