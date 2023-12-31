@@ -14,7 +14,7 @@ function getUnit() {
     // Less than 1 ms
     if (diff('ms') < 1) {
         result = 'celebrating';
-        if (diff('d') < -15) {
+        if (diff('d') < -13) {
             result = 'over';
         }
     }
