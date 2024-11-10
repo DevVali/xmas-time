@@ -4,8 +4,12 @@ const { getTimeLeft } = require('./getTimeLeft');
 /**
  * @type {vscode.StatusBarItem}
  */
-let statusBar = null;
+let statusBar;
 
+/**
+ * @function
+ * @returns {vscode.StatusBarItem}
+ */
 function createStatusBar() {
     statusBar = vscode.window.createStatusBarItem(
         vscode.StatusBarAlignment.Right
@@ -14,6 +18,10 @@ function createStatusBar() {
     return statusBar;
 }
 
+/**
+ * @function
+ * @returns {void}
+ */
 function updateStatusBar() {
     if (
         getTimeLeft() !== 'Merry Christmas!' &&
@@ -27,4 +35,11 @@ function updateStatusBar() {
     statusBar.show();
 }
 
+/**
+ * @exports
+ * @type {{
+ *   createStatusBar: function(): vscode.StatusBarItem,
+ *   updateStatusBar: function(): void
+ * }}
+ */
 module.exports = { createStatusBar, updateStatusBar };
