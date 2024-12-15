@@ -66,11 +66,11 @@
                     "description": "Personalize your Xmas experience by specifying the day you celebrate. The countdown adapts to your festive schedule.",
                     "type": "string",
                     "enum": [
-                        "2023-12-24",
-                        "2023-12-25",
-                        "2024-01-06"
+                        "2024-12-24",
+                        "2024-12-25",
+                        "2025-01-06"
                     ],
-                    "default": "2023-12-25"
+                    "default": "2024-12-25"
                 }
             }
         }
