@@ -31,6 +31,7 @@ function updateStatusBar() {
         statusBar.tooltip = `${getTimeLeft()} left until Christmas 🎄`;
     } else {
         statusBar.text = `$(sparkle) ${getTimeLeft()}`;
+        statusBar.tooltip = null;
     }
     statusBar.show();
 }
