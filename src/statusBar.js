@@ -1,5 +1,6 @@
+import getTimeLeft from './getTimeLeft.js';
+
 const vscode = require('vscode');
-const { getTimeLeft } = require('./getTimeLeft');
 
 /**
  * @type {vscode.StatusBarItem}
@@ -43,4 +44,4 @@ function updateStatusBar() {
  *   updateStatusBar: function(): void
  * }}
  */
-module.exports = { createStatusBar, updateStatusBar };
+export { createStatusBar, updateStatusBar };
