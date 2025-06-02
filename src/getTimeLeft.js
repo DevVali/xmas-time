@@ -1,6 +1,7 @@
 const vscode = require('vscode');
 const dayjs = require('dayjs');
-const { yourXmas } = vscode.workspace.getConfiguration('xmasTime');
+const currentYear = new Date().getFullYear();
+const yourXmas = new Date(`${currentYear}-12-25`);
 
 // Helpers
 
