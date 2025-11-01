@@ -66,14 +66,11 @@
             "properties": {
                 "xmasTime.yourXmas": {
                     "title": "Your Xmas",
-                    "description": "Personalize your Xmas experience by specifying the day you celebrate. The countdown adapts to your festive schedule.",
+                    "description": "Personalize your Xmas experience by specifying the day you celebrate. The countdown adapts to your festive schedule. Enter the date in YYYY-MM-DD format.",
                     "type": "string",
-                    "enum": [
-                        "2024-12-24",
-                        "2024-12-25",
-                        "2025-01-06"
-                    ],
-                    "default": "2024-12-25"
+                    "default": "2024-12-25",
+                    "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$",
+                    "patternErrorMessage": "The given date must be in the YYYY-MM-DD format."
                 }
             }
         }
@@ -101,6 +98,5 @@
         "webpack-cli": "^5.1.4"
     },
     "dependencies": {
-        "dayjs": "^1.11.10"
     }
 }

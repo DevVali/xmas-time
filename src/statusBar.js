@@ -1,5 +1,6 @@
+import getTimeLeft from './getTimeLeft.js';
+
 const vscode = require('vscode');
-const { getTimeLeft } = require('./getTimeLeft');
 
 /**
  * @type {vscode.StatusBarItem}
@@ -31,6 +32,7 @@ function updateStatusBar() {
         statusBar.tooltip = `${getTimeLeft()} left until Christmas 🎄`;
     } else {
         statusBar.text = `$(sparkle) ${getTimeLeft()}`;
+        statusBar.tooltip = null;
     }
     statusBar.show();
 }
@@ -42,4 +44,4 @@ function updateStatusBar() {
  *   updateStatusBar: function(): void
  * }}
  */
-module.exports = { createStatusBar, updateStatusBar };
+export { createStatusBar, updateStatusBar };
