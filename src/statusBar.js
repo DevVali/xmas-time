@@ -1,11 +1,16 @@
+import getTimeLeft from './getTimeLeft.js';
+
 const vscode = require('vscode');
-const { getTimeLeft } = require('./getTimeLeft');
 
 /**
  * @type {vscode.StatusBarItem}
  */
-let statusBar = null;
+let statusBar;
 
+/**
+ * @function
+ * @returns {vscode.StatusBarItem}
+ */
 function createStatusBar() {
     statusBar = vscode.window.createStatusBarItem(
         vscode.StatusBarAlignment.Right
@@ -14,6 +19,10 @@ function createStatusBar() {
     return statusBar;
 }
 
+/**
+ * @function
+ * @returns {void}
+ */
 function updateStatusBar() {
     if (
         getTimeLeft() !== 'Merry Christmas!' &&
@@ -23,8 +32,16 @@ function updateStatusBar() {
         statusBar.tooltip = `${getTimeLeft()} left until Christmas 🎄`;
     } else {
         statusBar.text = `$(sparkle) ${getTimeLeft()}`;
+        statusBar.tooltip = null;
     }
     statusBar.show();
 }
 
-module.exports = { createStatusBar, updateStatusBar };
+/**
+ * @exports
+ * @type {{
+ *   createStatusBar: function(): vscode.StatusBarItem,
+ *   updateStatusBar: function(): void
+ * }}
+ */
+export { createStatusBar, updateStatusBar };
