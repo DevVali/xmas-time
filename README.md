@@ -1,4 +1,4 @@
-# Xmas Time (╯^□^)❄☃❄
+# Xmas Time (╯^□^)❄☃❄: Season 3!
 
 ![Xmas Time](images/hero.png)
 
