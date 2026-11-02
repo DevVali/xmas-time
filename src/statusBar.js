@@ -1,6 +1,5 @@
-import getTimeLeft from './getTimeLeft.js';
-
 const vscode = require('vscode');
+const { getTimeLeft } = require('./getTimeLeft');
 
 /**
  * @type {vscode.StatusBarItem}
@@ -24,14 +23,17 @@ function createStatusBar() {
  * @returns {void}
  */
 function updateStatusBar() {
+    const timeLeft = getTimeLeft();
+
     if (
-        getTimeLeft() !== 'Merry Christmas!' &&
-        getTimeLeft() !== 'Christmas is over!'
+        timeLeft !== 'Merry Christmas!' &&
+        timeLeft !== 'Christmas is over!' &&
+        timeLeft !== 'Invalid Xmas date!'
     ) {
-        statusBar.text = `$(watch) ${getTimeLeft()}`;
-        statusBar.tooltip = `${getTimeLeft()} left until Christmas 🎄`;
+        statusBar.text = `$(watch) ${timeLeft}`;
+        statusBar.tooltip = `${timeLeft} left until Christmas 🎄`;
     } else {
-        statusBar.text = `$(sparkle) ${getTimeLeft()}`;
+        statusBar.text = `$(sparkle) ${timeLeft}`;
         statusBar.tooltip = null;
     }
     statusBar.show();
@@ -44,4 +46,4 @@ function updateStatusBar() {
  *   updateStatusBar: function(): void
  * }}
  */
-export { createStatusBar, updateStatusBar };
+module.exports = { createStatusBar, updateStatusBar };

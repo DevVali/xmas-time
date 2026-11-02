@@ -1,32 +1,89 @@
-import dateDifference from './dateDifference';
-
 const vscode = require('vscode');
+const { parseDate, dateDifference } = require('./dateDifference');
+
+// Helpers
+
+/**
+ * @function
+ * @param {number} count
+ * @param {string} unit
+ * @returns {string}
+ */
+function plural(count, unit) {
+    return `${count} ${count > 1 ? `${unit}s` : unit}`;
+}
+
+/**
+ * @function
+ * @param {{ ms: number, days: number }} difference
+ * @returns {'m' | 'h' | 'd' | 'celebrating' | 'over'}
+ */
+function getUnit(difference) {
+    // Christmas has come, celebrate for 13 more days
+    if (difference.ms < 1) {
+        return difference.days < -13 ? 'over' : 'celebrating';
+    }
+    if (difference.days > 0) {
+        return 'd';
+    }
+    if (difference.hours > 0) {
+        return 'h';
+    }
+    return 'm';
+}
 
 // Get the time left and return the text
-function getTimeLeft() {
-    const { yourXmas } = vscode.workspace.getConfiguration('xmasTime');
-    const difference = dateDifference(Date.now(), Date.parse(yourXmas));
 
-    if (difference.minutes < 0 && difference.days == 0) { // 60 * 24 minutes per day
-        // it is the christmas day
-        return "Merry Christmas!";
-    } else if (difference.days <= -1) {
-        // christmas is over
-        return "Christmas is over!";
+/**
+ * @function
+ * @param {Date} [now]
+ * @returns {string}
+ */
+function getTimeLeft(now = new Date()) {
+    const { yourXmas } = vscode.workspace.getConfiguration('xmasTime');
+    const xmas = parseDate(yourXmas);
+
+    if (!xmas) {
+        console.log(
+            'Xmas Time could not calculate the time left until Christmas!'
+        );
+        return 'Invalid Xmas date!';
     }
 
-    if (difference.days > 0) {
-        // days hours
-        return `${difference.days} ${difference.days > 1 ? "days" : "day"} and ${difference.hours} ${difference.hours > 1 ? "hours" : "hour"}`
-    } else {
-        if (difference.hours > 0) {
-            // hours minutes
-            return `${difference.hours} ${difference.hours > 1 ? "hours" : "hour"} and ${difference.minutes} ${difference.minutes > 1 ? "minutes" : "minute"}`
-        } else {
-            // minutes
-            return `${difference.minutes} ${difference.minutes > 1 ? "minutes" : "minute"}`
+    const difference = dateDifference(now, xmas);
+
+    switch (getUnit(difference)) {
+        case 'd': {
+            const hoursLeft = difference.hours % 24;
+            return hoursLeft > 0
+                ? `${plural(difference.days, 'day')} and ${plural(
+                      hoursLeft,
+                      'hour'
+                  )}`
+                : plural(difference.days, 'day');
         }
+        case 'h': {
+            const minutesLeft = (difference.minutes % 60) + 1;
+            return minutesLeft !== 60
+                ? `${plural(difference.hours, 'hour')} and ${plural(
+                      minutesLeft,
+                      'minute'
+                  )}`
+                : plural(difference.hours + 1, 'hour');
+        }
+        case 'm':
+            return plural(difference.minutes + 1, 'minute');
+        case 'celebrating':
+            return 'Merry Christmas!';
+        case 'over':
+            return 'Christmas is over!';
     }
 }
 
-export default getTimeLeft;
+/**
+ * @exports
+ * @type {{
+ *   getTimeLeft: function(Date=): string
+ * }}
+ */
+module.exports = { getTimeLeft };

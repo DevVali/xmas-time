@@ -2,6 +2,18 @@
 
 All notable changes to the Xmas Time extension will be documented in this file.
 
+## 2.0.0
+
+### Changed
+
+-   Removed the `dayjs` dependency, the countdown is now calculated with built-in JavaScript date functions
+-   The countdown updates as soon as the `yourXmas` setting changes
+
+### Fixed
+
+-   `yourXmas` is parsed as local midnight instead of UTC
+-   An invalid `yourXmas` date shows "Invalid Xmas date!" instead of a broken countdown
+
 ## 1.1.2
 
 ### Fixed

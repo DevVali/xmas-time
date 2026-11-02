@@ -31,6 +31,13 @@ function activate() {
         vscode.window.onDidChangeActiveTextEditor(updateStatusBar)
     );
     subscriptions.push(vscode.workspace.onDidSaveTextDocument(updateStatusBar));
+    subscriptions.push(
+        vscode.workspace.onDidChangeConfiguration((event) => {
+            if (event.affectsConfiguration('xmasTime.yourXmas')) {
+                updateStatusBar();
+            }
+        })
+    );
 
     // Update the status bar once at start
     updateStatusBar();

@@ -8,7 +8,7 @@
     },
     "description": "Xmas Time adds a Christmas countdown to your Visual Studio Code's status bar!",
     "icon": "images/logo.png",
-    "version": "1.1.2",
+    "version": "2.0.0",
     "engines": {
         "vscode": "^1.84.0"
     },
@@ -68,7 +68,7 @@
                     "title": "Your Xmas",
                     "description": "Personalize your Xmas experience by specifying the day you celebrate. The countdown adapts to your festive schedule. Enter the date in YYYY-MM-DD format.",
                     "type": "string",
-                    "default": "2024-12-25",
+                    "default": "2026-12-25",
                     "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$",
                     "patternErrorMessage": "The given date must be in the YYYY-MM-DD format."
                 }
@@ -97,6 +97,5 @@
         "webpack": "^5.89.0",
         "webpack-cli": "^5.1.4"
     },
-    "dependencies": {
-    }
+    "dependencies": {}
 }
