@@ -1,4 +1,4 @@
-# Xmas Time (╯^□^)❄☃❄
+# Xmas Time (╯^□^)❄☃❄: Season 2!
 
 ![Xmas Time](images/hero.png)
 
@@ -27,9 +27,7 @@
 
 ## Partners
 
-1. [Agg-API](https://api.aggelos-007.xyz)
-
-Meet the partners who join us in building and spreading the holiday spirit through this extension.
+Want to help spread the holiday spirit as a partner of Xmas Time? Reach out by opening an issue on [GitHub](https://github.com/DevVali/xmas-time/issues).
 
 ## Contributors
 
@@ -45,6 +43,3 @@ This extension is licensed under the [MIT License](LICENSE).
 ---
 
 Happy Coding and Merry Christmas! 🎄✨
-
-
----

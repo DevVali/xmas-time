@@ -1,88 +1,89 @@
 const vscode = require('vscode');
-const dayjs = require('dayjs');
-const { yourXmas } = vscode.workspace.getConfiguration('xmasTime');
+const { parseDate, dateDifference } = require('./dateDifference');
 
 // Helpers
 
-function diff(unit) {
-    return dayjs(yourXmas).diff(dayjs(), unit);
+/**
+ * @function
+ * @param {number} count
+ * @param {string} unit
+ * @returns {string}
+ */
+function plural(count, unit) {
+    return `${count} ${count > 1 ? `${unit}s` : unit}`;
 }
 
-function getUnit() {
-    let result = '';
-
-    // Less than 1 ms
-    if (diff('ms') < 1) {
-        result = 'celebrating';
-        if (diff('d') < -13) {
-            result = 'over';
-        }
+/**
+ * @function
+ * @param {{ ms: number, days: number }} difference
+ * @returns {'m' | 'h' | 'd' | 'celebrating' | 'over'}
+ */
+function getUnit(difference) {
+    // Christmas has come, celebrate for 13 more days
+    if (difference.ms < 1) {
+        return difference.days < -13 ? 'over' : 'celebrating';
     }
-    // Greather than 1 ms
-    if (diff('ms') > 1) {
-        result = 'm';
-        if (diff('d') > 0) {
-            result = 'd';
-        } else if (diff('h') > 0) {
-            result = 'h';
-        }
+    if (difference.days > 0) {
+        return 'd';
     }
-    if (result !== '') {
-        return result;
-    } else {
-        return console.log(
-            'Xmas Time could not calculate the time left until Christmas!'
-        );
+    if (difference.hours > 0) {
+        return 'h';
     }
+    return 'm';
 }
 
 // Get the time left and return the text
 
-function getTimeLeft() {
-    const unit = getUnit();
-    let timeLeft = diff(unit);
-    let result = '';
+/**
+ * @function
+ * @param {Date} [now]
+ * @returns {string}
+ */
+function getTimeLeft(now = new Date()) {
+    const { yourXmas } = vscode.workspace.getConfiguration('xmasTime');
+    const xmas = parseDate(yourXmas);
 
-    switch (unit) {
-        case 'm':
-            timeLeft += 1;
-            result = `${timeLeft} ${timeLeft > 1 ? 'minutes' : 'minute'}`;
-            break;
-        case 'd':
-            const hoursLeft = diff('h') % 24;
-            if (hoursLeft > 0) {
-                result = `${timeLeft} ${
-                    timeLeft > 1 ? 'days' : 'day'
-                } and ${hoursLeft} ${hoursLeft > 1 ? 'hours' : 'hour'}`;
-            } else {
-                result = `${timeLeft} ${timeLeft > 1 ? 'days' : 'day'}`;
-            }
-            break;
-        case 'h':
-            const minutesLeft = (diff('m') % 60) + 1;
-            if (minutesLeft > 0 && minutesLeft !== 60) {
-                result = `${timeLeft} ${
-                    timeLeft > 1 ? 'hours' : 'hour'
-                } and ${minutesLeft} ${minutesLeft > 1 ? 'minutes' : 'minute'}`;
-            } else {
-                timeLeft += 1;
-                result = `${timeLeft} ${timeLeft > 1 ? 'hours' : 'hour'}`;
-            }
-            break;
-        case 'celebrating':
-            result = 'Merry Christmas!';
-            break;
-        case 'over':
-            result = 'Christmas is over!';
-            break;
-    }
-    if (result !== '') {
-        return result;
-    } else {
-        return console.log(
+    if (!xmas) {
+        console.log(
             'Xmas Time could not calculate the time left until Christmas!'
         );
+        return 'Invalid Xmas date!';
+    }
+
+    const difference = dateDifference(now, xmas);
+
+    switch (getUnit(difference)) {
+        case 'd': {
+            const hoursLeft = difference.hours % 24;
+            return hoursLeft > 0
+                ? `${plural(difference.days, 'day')} and ${plural(
+                      hoursLeft,
+                      'hour'
+                  )}`
+                : plural(difference.days, 'day');
+        }
+        case 'h': {
+            const minutesLeft = (difference.minutes % 60) + 1;
+            return minutesLeft !== 60
+                ? `${plural(difference.hours, 'hour')} and ${plural(
+                      minutesLeft,
+                      'minute'
+                  )}`
+                : plural(difference.hours + 1, 'hour');
+        }
+        case 'm':
+            return plural(difference.minutes + 1, 'minute');
+        case 'celebrating':
+            return 'Merry Christmas!';
+        case 'over':
+            return 'Christmas is over!';
     }
 }
 
+/**
+ * @exports
+ * @type {{
+ *   getTimeLeft: function(Date=): string
+ * }}
+ */
 module.exports = { getTimeLeft };
